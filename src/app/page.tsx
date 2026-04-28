@@ -1,65 +1,107 @@
-import Image from "next/image";
+import Header from '@/app/components/organisms/Header';
+import Sidebar from '@/app/components/organisms/Sidebar';
+import Card from '@/app/components/molecules/Card';
+import Button from '@/app/components/atoms/Button';
+import Badge from '@/app/components/atoms/Badge';
 
-export default function Home() {
+export const metadata = {
+  title: 'Day 1 — Atomic Components | React Next.js Plan',
+  description:
+    'Day 1 practice: Atomic Design Principle — Header, Button, Card, Sidebar components.',
+};
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-950">
+      <Header />
+
+      <div className="flex flex-1">
+        <Sidebar />
+
+        <main className="flex-1 p-8">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            Day 1 — Atomic Components
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-gray-500 dark:text-gray-400 mb-8 text-sm">
+            Atoms → Molecules → Organisms (Atomic Design Principle)
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+          <section aria-labelledby="buttons-heading" className="mb-10">
+            <h2
+              id="buttons-heading"
+              className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4"
+            >
+              Buttons (Atoms)
+            </h2>
+            <div className="flex flex-wrap gap-3">
+              <Button label="Primary" variant="primary" />
+              <Button label="Secondary" variant="secondary" />
+              <Button label="Danger" variant="danger" />
+              <Button label="Ghost" variant="ghost" />
+              <Button label="Disabled" disabled />
+              <Button label="Small" size="sm" />
+              <Button label="Large" size="lg" />
+            </div>
+          </section>
+
+          <section aria-labelledby="badges-heading" className="mb-10">
+            <h2
+              id="badges-heading"
+              className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4"
+            >
+              Badges (Atoms)
+            </h2>
+            <div className="flex flex-wrap gap-3">
+              <Badge label="Active" variant="success" />
+              <Badge label="Pending" variant="warning" />
+              <Badge label="Error" variant="error" />
+              <Badge label="Info" variant="info" />
+              <Badge label="Inactive" variant="muted" />
+            </div>
+          </section>
+
+          <section aria-labelledby="cards-heading" className="mb-10">
+            <h2
+              id="cards-heading"
+              className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4"
+            >
+              Cards (Molecules)
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <Card
+                title="Total Users"
+                description="Registered users in the system."
+                status="success"
+                statusLabel="Active"
+                footer={<Button label="View All" size="sm" />}
+              />
+              <Card
+                title="Pending Reviews"
+                description="Items waiting for approval."
+                status="warning"
+                statusLabel="Pending"
+                footer={<Button label="Review" size="sm" variant="secondary" />}
+              />
+              <Card
+                title="Failed Jobs"
+                description="Background tasks that failed."
+                status="error"
+                statusLabel="Error"
+                footer={<Button label="Retry" size="sm" variant="danger" />}
+              />
+            </div>
+          </section>
+
+          <div className="mt-8">
+            <a
+              href="/day2"
+              className="inline-flex items-center gap-2 text-primary underline text-sm font-medium"
+            >
+              → Go to Day 2: Counter, Tabs, Modal, Dropdown
+            </a>
+          </div>
+        </main>
+      </div>
     </div>
   );
 }
