@@ -1,8 +1,8 @@
-import Header from '@/app/components/organisms/Header';
-import Sidebar from '@/app/components/organisms/Sidebar';
-import Card from '@/app/components/molecules/Card';
-import Button from '@/app/components/atoms/Button';
-import Badge from '@/app/components/atoms/Badge';
+import Header from '@/components/organisms/Header';
+import Sidebar from '@/components/organisms/Sidebar';
+import Card from '@/components/molecules/Card';
+import Button from '@/components/atoms/Button';
+import Badge from '@/components/atoms/Badge';
 
 export const metadata = {
   title: 'Day 1 — Atomic Components | React Next.js Plan',

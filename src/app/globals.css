@@ -11,15 +11,12 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  /* Primary */
   --color-primary: #2563eb;
   --color-primary-dark: #1d4ed8;
 
-  /* Secondary */
   --color-secondary: #7c3aed;
   --color-secondary-dark: #6d28d9;
 
-  /* Muted & Border */
   --color-muted: #6b7280;
   --color-border: #e5e7eb;
 }

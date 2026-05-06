@@ -13,6 +13,13 @@ const navItems: NavItem[] = [
   { label: 'Users', href: '/users', icon: '👥' },
   { label: 'Settings', href: '/settings', icon: '⚙️' },
   { label: 'Day 2 Demo', href: '/day2', icon: '🧪' },
+  { label: 'Day 3', href: '/day3', icon: '📋' },
+  { label: 'Day 4', href: '/day4', icon: '🔐' },
+  { label: 'Day 5', href: '/day5', icon: '📝' },
+  { label: 'Day 6', href: '/day6', icon: '🌐' },
+  { label: 'Day 7', href: '/day7', icon: '🔎' },
+  { label: 'Day 8', href: '/day8', icon: '⚙️' },
+  { label: 'Day 9', href: '/day9', icon: '🎨' }
 ];
 
 export default function Sidebar() {

@@ -1,16 +1,16 @@
-import Button from '../atoms/Button';
+
+import HeaderAuthSection from '@/components/organisms/HeaderAuthSection';
 
 interface HeaderProps {
   title?: string;
-  onLogout?: () => void;
 }
 
-export default function Header({ title = 'Dashboard', onLogout }: HeaderProps) {
+export default function Header({ title = 'Dashboard' }: HeaderProps) {
   return (
-
-    <header className="w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-6 py-3">
+    <header className="w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 px-6 py-3 z-10">
       <div className="flex items-center justify-between max-w-screen-xl mx-auto">
 
+        {/* Brand */}
         <div className="flex items-center gap-3">
           <span className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-sm">
             U
@@ -20,6 +20,7 @@ export default function Header({ title = 'Dashboard', onLogout }: HeaderProps) {
           </span>
         </div>
 
+        {/* Nav */}
         <nav aria-label="Main navigation">
           <ul className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600 dark:text-gray-300">
             <li>
@@ -28,21 +29,21 @@ export default function Header({ title = 'Dashboard', onLogout }: HeaderProps) {
               </a>
             </li>
             <li>
-              <a href="/day2" className="hover:text-primary transition-colors">
-                Day 2
+              <a href="/day8" className="hover:text-primary transition-colors">
+                Day 8
+              </a>
+            </li>
+            <li>
+              <a href="/day9" className="hover:text-primary transition-colors">
+                Day 9
               </a>
             </li>
           </ul>
         </nav>
 
-        <div className="flex items-center gap-3">
-          <span className="text-sm text-gray-500 dark:text-gray-400">
-            Admin
-          </span>
-          {onLogout && (
-            <Button label="Logout" variant="ghost" size="sm" onClick={onLogout} />
-          )}
-        </div>
+        {/* Auth + Theme — client component */}
+        <HeaderAuthSection />
+
       </div>
     </header>
   );
