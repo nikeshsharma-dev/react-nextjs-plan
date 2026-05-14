@@ -23,7 +23,6 @@ export default function LoginForm() {
 
   async function onSubmit(data: LoginFormData) {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log('Login data:', data);
     setSubmitted(true);
   }
 
@@ -102,11 +101,13 @@ export default function LoginForm() {
       <p className="text-center text-sm text-gray-500 dark:text-gray-400">
         Forgot your password?{' '}
 
-        <a
-          href="#"
-          className="text-primary font-medium hover:underline">
+        <button
+          type="button"
+          className="text-primary font-medium hover:underline"
+          onClick={() => alert('Password reset coming soon')}
+        >
           Reset your password
-        </a>
+        </button>
       </p>
     </form>
   );

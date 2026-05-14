@@ -1,4 +1,3 @@
-
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
@@ -10,6 +9,7 @@ interface PaginationProps {
   onGoToPage: (page: number) => void;
   hasNext: boolean;
   hasPrev: boolean;
+  itemLabel?: string; // FIX: reusable — default 'items'
 }
 
 export default function Pagination({
@@ -23,6 +23,7 @@ export default function Pagination({
   onGoToPage,
   hasNext,
   hasPrev,
+  itemLabel = 'items', // FIX: was hardcoded 'users'
 }: PaginationProps) {
   if (totalPages <= 1) return null;
 
@@ -39,7 +40,6 @@ export default function Pagination({
 
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
-      {/* Results info */}
       <p className="text-sm text-gray-500 dark:text-gray-400">
         Showing{' '}
         <span className="font-medium text-gray-700 dark:text-gray-200">
@@ -49,13 +49,12 @@ export default function Pagination({
         <span className="font-medium text-gray-700 dark:text-gray-200">
           {totalItems}
         </span>{' '}
-        users
+        {/* FIX: dynamic label */}
+        {itemLabel}
       </p>
 
-      {/* Page controls */}
       <nav aria-label="Pagination navigation">
         <ul className="flex items-center gap-1">
-          {/* Previous */}
           <li>
             <button
               type="button"
@@ -67,8 +66,6 @@ export default function Pagination({
               ← Prev
             </button>
           </li>
-
-          {/* Page numbers */}
           {pageNumbers.map((page) => (
             <li key={page}>
               <button
@@ -87,8 +84,6 @@ export default function Pagination({
               </button>
             </li>
           ))}
-
-          {/* Next */}
           <li>
             <button
               type="button"

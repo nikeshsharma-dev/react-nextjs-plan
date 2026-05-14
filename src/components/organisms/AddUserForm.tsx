@@ -37,7 +37,6 @@ export default function AddUserForm({ onSuccess, onCancel }: AddUserFormProps) {
 
   async function onSubmit(data: AddUserFormData) {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log('New user:', data);
     setSubmittedData(data);
     setSubmitted(true);
     onSuccess?.(data);

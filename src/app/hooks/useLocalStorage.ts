@@ -1,6 +1,3 @@
-
-'use client';
-
 import { useState, useEffect, useRef } from 'react';
 
 export function useLocalStorage<T>(key: string, initialValue: T) {

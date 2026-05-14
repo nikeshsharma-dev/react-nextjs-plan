@@ -42,6 +42,9 @@ function Tabs() {
             role="tab"
             type="button"
             aria-selected={active === tab}
+            // SEO + A11y: links tab button to its panel
+            aria-controls={`tabpanel-${tab}`}
+            id={`tab-${tab}`}
             onClick={() => setActive(tab)}
             className={[
               'px-4 py-2 text-sm font-medium transition-colors duration-150 border-b-2 -mb-px',
@@ -55,9 +58,14 @@ function Tabs() {
         ))}
       </div>
 
+      {/* FIX: tabIndex={0} added — makes panel focusable by keyboard */}
+      {/* aria-labelledby links panel back to its tab button */}
       <div
         role="tabpanel"
-        className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50 text-sm text-gray-600 dark:text-gray-400"
+        id={`tabpanel-${active}`}
+        aria-labelledby={`tab-${active}`}
+        tabIndex={0}
+        className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50 text-sm text-gray-600 dark:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40"
       >
         You are viewing:{' '}
         <strong className="text-gray-900 dark:text-white">{active}</strong>
@@ -88,7 +96,6 @@ export default function Day2Page() {
 
           <div className="flex flex-col gap-10">
 
-            {/* Counter */}
             <section aria-labelledby="counter-heading">
               <h2
                 id="counter-heading"

@@ -1,6 +1,4 @@
 
-'use client';
-
 import { useState, useEffect, useRef } from 'react';
 
 interface WindowSize {
