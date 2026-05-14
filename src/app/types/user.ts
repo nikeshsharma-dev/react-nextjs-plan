@@ -7,5 +7,5 @@ export interface User {
   email: string;
   role: UserRole;
   status: UserStatus;
-  joinedAt: string;
+  joinedAt?: string;
 }
