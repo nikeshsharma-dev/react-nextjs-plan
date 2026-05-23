@@ -1,7 +1,7 @@
-
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { addUserSchema, AddUserFormData } from '@/app/validations/addUserSchema';
@@ -9,12 +9,13 @@ import FormField from '@/components/atoms/FormField';
 import Button from '@/components/atoms/Button';
 import Badge from '@/components/atoms/Badge';
 
+// FIX: onCancel prop remove kiya — Server Component se function pass nahi hota
 interface AddUserFormProps {
   onSuccess?: (data: AddUserFormData) => void;
-  onCancel?: () => void;
 }
 
-export default function AddUserForm({ onSuccess, onCancel }: AddUserFormProps) {
+export default function AddUserForm({ onSuccess }: AddUserFormProps) {
+  const router = useRouter(); // FIX: useRouter add kiya navigation ke liye
   const [submitted, setSubmitted] = useState(false);
   const [submittedData, setSubmittedData] = useState<AddUserFormData | null>(null);
 
@@ -91,9 +92,12 @@ export default function AddUserForm({ onSuccess, onCancel }: AddUserFormProps) {
             variant="primary"
             onClick={handleReset}
           />
-          {onCancel && (
-            <Button label="Done" variant="ghost" onClick={onCancel} />
-          )}
+          {/* FIX: onCancel ki jagah router.push */}
+          <Button
+            label="Go to Users"
+            variant="ghost"
+            onClick={() => router.push('/day15/users')}
+          />
         </div>
       </div>
     );
@@ -112,7 +116,6 @@ export default function AddUserForm({ onSuccess, onCancel }: AddUserFormProps) {
           Personal Information
         </legend>
 
-        {/* Full name */}
         <FormField
           id="name"
           label="Full Name"
@@ -124,7 +127,6 @@ export default function AddUserForm({ onSuccess, onCancel }: AddUserFormProps) {
           {...register('name')}
         />
 
-        {/* Email */}
         <FormField
           id="add-email"
           label="Email Address"
@@ -143,7 +145,6 @@ export default function AddUserForm({ onSuccess, onCancel }: AddUserFormProps) {
           Role <span className="text-red-500 ml-1">*</span>
         </legend>
 
-        {/* SEO: proper label + select */}
         <label htmlFor="role" className="sr-only">
           Select user role
         </label>
@@ -204,7 +205,7 @@ export default function AddUserForm({ onSuccess, onCancel }: AddUserFormProps) {
         />
       </fieldset>
 
-      {/* Actions — SEO: meaningful button labels */}
+      {/* Actions */}
       <div className="flex gap-3 pt-2">
         <Button
           label={isSubmitting ? 'Adding User...' : 'Add New User'}
@@ -213,15 +214,14 @@ export default function AddUserForm({ onSuccess, onCancel }: AddUserFormProps) {
           fullWidth
           disabled={isSubmitting}
         />
-        {onCancel && (
-          <Button
-            label="Cancel"
-            type="button"
-            variant="ghost"
-            fullWidth
-            onClick={onCancel}
-          />
-        )}
+        {/* FIX: onCancel ki jagah router.push */}
+        <Button
+          label="Cancel"
+          type="button"
+          variant="ghost"
+          fullWidth
+          onClick={() => router.push('/day15/users')}
+        />
       </div>
     </form>
   );

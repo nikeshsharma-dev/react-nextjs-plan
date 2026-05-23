@@ -1,6 +1,3 @@
-// DAY 15: Add user page
-// SEO: title, description, semantic form
-
 import { Metadata } from 'next';
 import Link from 'next/link';
 import AddUserForm from '@/components/organisms/AddUserForm';
@@ -43,9 +40,8 @@ export default function AddUserPage() {
       </div>
 
       <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm p-6 sm:p-8">
-        <AddUserForm
-          onCancel={() => {}}
-        />
+        {/* onCancel prop removed — Server Component se function pass nahi hota */}
+        <AddUserForm />
       </div>
 
     </div>
