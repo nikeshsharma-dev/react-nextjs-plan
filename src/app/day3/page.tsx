@@ -5,17 +5,15 @@ import Header from '@/components/organisms/Header';
 import Sidebar from '@/components/organisms/Sidebar';
 import UserList from '@/components/organisms/UserList';
 import Button from '@/components/atoms/Button';
-import { User } from '@/components/molecules/UserCard';
-
+import { User } from '../types/user';
 const MOCK_USERS: User[] = [
-  { id: 'u1', name: 'Alice Johnson',  email: 'alice@example.com',  role: 'Admin',  status: 'active'   },
-  { id: 'u2', name: 'Bob Smith',      email: 'bob@example.com',    role: 'Editor', status: 'inactive' },
-  { id: 'u3', name: 'Carol White',    email: 'carol@example.com',  role: 'Viewer', status: 'pending'  },
-  { id: 'u4', name: 'David Brown',    email: 'david@example.com',  role: 'Editor', status: 'active'   },
-  { id: 'u5', name: 'Eva Martinez',   email: 'eva@example.com',    role: 'Admin',  status: 'active'   },
-  { id: 'u6', name: 'Frank Lee',      email: 'frank@example.com',  role: 'Viewer', status: 'inactive' },
+  { id: 'u1', name: 'Alice Johnson', email: 'alice@example.com', role: 'Admin',  status: 'active',   joinedAt: '2024-01-15' },
+  { id: 'u2', name: 'Bob Smith',     email: 'bob@example.com',   role: 'Editor', status: 'inactive', joinedAt: '2024-02-20' },
+  { id: 'u3', name: 'Carol White',   email: 'carol@example.com', role: 'Viewer', status: 'pending',  joinedAt: '2024-03-10' },
+  { id: 'u4', name: 'David Brown',   email: 'david@example.com', role: 'Editor', status: 'active',   joinedAt: '2024-03-22' },
+  { id: 'u5', name: 'Eva Martinez',  email: 'eva@example.com',   role: 'Admin',  status: 'active',   joinedAt: '2024-04-05' },
+  { id: 'u6', name: 'Frank Lee',     email: 'frank@example.com', role: 'Viewer', status: 'inactive', joinedAt: '2024-04-18' },
 ];
-
 export default function Day3Page() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
