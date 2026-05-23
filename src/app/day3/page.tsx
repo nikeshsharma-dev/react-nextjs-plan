@@ -5,7 +5,7 @@ import Header from '@/components/organisms/Header';
 import Sidebar from '@/components/organisms/Sidebar';
 import UserList from '@/components/organisms/UserList';
 import Button from '@/components/atoms/Button';
-import { User } from '../types/user';
+import { User } from '@/components/molecules/UserCard';
 
 const MOCK_USERS: User[] = [
   { id: 'u1', name: 'Alice Johnson',  email: 'alice@example.com',  role: 'Admin',  status: 'active'   },

@@ -112,11 +112,11 @@ export default function UserTable({ users, loading, error, onRetry }: UserTableP
 
               {/* Joined date */}
               <td className="px-4 py-3 whitespace-nowrap text-gray-500 dark:text-gray-400">
-                {user.joinedAt ? new Date(user.joinedAt).toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'short',
-  day: 'numeric',
-}) : 'N/A'}
+                {new Date(user.joinedAt).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })}
               </td>
             </tr>
           ))}

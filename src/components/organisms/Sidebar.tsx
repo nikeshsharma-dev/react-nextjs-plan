@@ -22,6 +22,10 @@ const navItems: NavItem[] = [
   { label: 'Day 9', href: '/day9', icon: '🎨' },
   { label: 'Day 10', href: '/day10', icon: '🗺️' },
   { label: 'Day 11', href: '/day11', icon: '🔗' },
+  { label: 'Day 12', href: '/day12', icon: '🖥️' },
+  { label: 'Day 13', href: '/day13', icon: '🛡️' },
+  { label: 'Day 14', href: '/day14', icon: '📊' },
+  { label: 'Day 15 — Final', href: '/day15', icon: '🏆' },
 ];
 
 export default function Sidebar() {

@@ -1,4 +1,7 @@
 // DAY 11: Dynamic routes — /users/[id]
+// No Header/Sidebar — comes from layout.tsx
+// PERF: Server Component — no client fetch
+// Tailwind: theme colors applied consistently across Button, Card, Input, Sidebar, Header
 
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -159,8 +162,116 @@ export default function Day11Page() {
         </div>
       </section>
 
-     
-          
+      {/* Dynamic Route Concepts */}
+      <section aria-labelledby="concepts-heading">
+        <h2
+          id="concepts-heading"
+          className="text-base font-semibold text-gray-800 dark:text-gray-200 mb-4"
+        >
+          Dynamic Route Concepts
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            {
+              icon: '🗂️',
+              title: 'Dynamic Route — /users/[id]',
+              desc: 'Create app/users/[id]/page.tsx. The [id] value is passed as params.id to the page component.',
+              code: 'app/users/[id]/page.tsx → /users/u1',
+            },
+            {
+              icon: '⚡',
+              title: 'generateStaticParams',
+              desc: 'Pre-generates all /users/u1, /users/u2 etc at build time. Fully static — no server cost per request.',
+              code: 'export async function generateStaticParams()',
+            },
+            {
+              icon: '🔍',
+              title: 'generateMetadata — Dynamic SEO',
+              desc: 'Reads params.id, finds user, returns unique title/description/OG for every user detail page.',
+              code: "title: `${user.name} — User Detail`",
+            },
+            {
+              icon: '🚫',
+              title: 'notFound()',
+              desc: 'If user id does not exist in data, call notFound(). Next.js renders not-found.tsx automatically.',
+              code: "if (!user) notFound()",
+            },
+          ].map((concept) => (
+            <div
+              key={concept.title}
+              className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-5 flex flex-col gap-2"
+            >
+              <div className="flex items-center gap-2">
+                <span aria-hidden="true" className="text-2xl">{concept.icon}</span>
+                <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
+                  {concept.title}
+                </h3>
+              </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 flex-1">
+                {concept.desc}
+              </p>
+              <code className="text-xs text-primary bg-primary/10 px-2 py-1 rounded break-all">
+                {concept.code}
+              </code>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Performance: server vs client */}
+      <section aria-labelledby="perf-heading">
+        <h2
+          id="perf-heading"
+          className="text-base font-semibold text-gray-800 dark:text-gray-200 mb-4"
+        >
+          Performance — Server Fetch vs Client Fetch
+        </h2>
+        <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center gap-2">
+                <span className="w-5 h-5 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-xs text-red-600 font-bold">✕</span>
+                <h3 className="text-sm font-semibold text-red-600 dark:text-red-400">
+                  Wrong — Client Fetch
+                </h3>
+              </div>
+              <div className="bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-800 rounded-lg p-4 text-xs font-mono text-red-700 dark:text-red-300 leading-6">
+                <p>{'// "use client" ← unnecessary'}</p>
+                <p>{'const [user, setUser] = useState()'}</p>
+                <p>{'useEffect(() => {'}</p>
+                <p>{"  fetch(`/api/users/${id}`)"}</p>
+                <p>{'    .then(r => setUser(r))'}</p>
+                <p>{'}, [])'}</p>
+                <p className="mt-2 text-red-400 not-italic">
+                  Slow — extra network call on client
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center gap-2">
+                <span className="w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-xs text-green-600 font-bold">✓</span>
+                <h3 className="text-sm font-semibold text-green-600 dark:text-green-400">
+                  Correct — Server Component
+                </h3>
+              </div>
+              <div className="bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-800 rounded-lg p-4 text-xs font-mono text-green-700 dark:text-green-300 leading-6">
+                <p>{'// No "use client" needed'}</p>
+                <p>{'export default async function Page('}</p>
+                <p>{'  { params }: PageProps'}</p>
+                <p>{'}) {'}</p>
+                <p>{'  const { id } = await params'}</p>
+                <p>{'  const user = MOCK_USERS'}</p>
+                <p>{'    .find(u => u.id === id)'}</p>
+                <p>{'  if (!user) notFound()'}</p>
+                <p className="mt-2 text-green-400 not-italic">
+                  Fast — runs on server, no extra call
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Live Demo */}
       <section aria-labelledby="demo-heading">
         <h2

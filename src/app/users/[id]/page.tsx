@@ -1,4 +1,6 @@
 // DAY 11: Dynamic route — /users/[id]
+// PERF: Server Component — no useEffect, no useState, data fetched server side
+// SEO: generateMetadata — unique title/description per user page
 
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -132,7 +134,7 @@ export default async function UserDetailPage({ params }: PageProps) {
                   {[
                     { label: 'User ID', value: user.id },
                     { label: 'Role', value: user.role },
-                   { label: 'Joined', value: user.joinedAt ? new Date(user.joinedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'N/A' },
+                    { label: 'Joined', value: new Date(user.joinedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) },
                   ].map((item) => (
                     <div key={item.label} className="flex justify-between text-sm">
                       <span className="text-gray-500 dark:text-gray-400">{item.label}</span>
@@ -168,7 +170,7 @@ export default async function UserDetailPage({ params }: PageProps) {
                       { label: 'Email Address', value: user.email },
                       { label: 'Role', value: user.role },
                       { label: 'Status', value: user.status },
-                      { label: 'Member Since', value: user.joinedAt ? new Date(user.joinedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'N/A' },
+                      { label: 'Member Since', value: new Date(user.joinedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) },
                     ].map((item) => (
                       <div
                         key={item.label}

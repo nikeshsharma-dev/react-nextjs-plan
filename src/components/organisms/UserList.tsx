@@ -1,6 +1,5 @@
 import Spinner from '@/components/atoms/Spinner';
-import UserCard from '@/components/molecules/UserCard';
-import { User } from '@/app/types/user';
+import UserCard, {User} from '@/components/molecules/UserCard';
 
 interface UserListProps {
   users: User[];
